@@ -54,8 +54,6 @@ module.exports = function check(str, bracketsConfig) {
   
   
   [...str].forEach((bracket, index, array) => {
-    // console.log(`********stack on startEach = ${stack} index = ${index} of ${array.length-1}`);
-    // console.log(`start bracket = ${bracket} index = ${index} of ${array.length-1}`);
     stackTop = stack.at(-1);
 
     if (bracket !== '|') {
@@ -66,23 +64,17 @@ module.exports = function check(str, bracketsConfig) {
     
     if (stackTop) {
       if (stackTop === compareClosingAndOpenBracket(bracket)) {
-        // console.log(`compareClosingAndOpenBracket = ${compareClosingAndOpenBracket(bracket)} index = ${index} of ${array.length-1}`);
         stack.pop();
-        // console.log(`after del compareClosingAndOpenBracket stack = ${stack} index = ${index} of ${array.length-1}`);
         return;
       }
     }
 
     if (isStrElementOpenBracket(bracket)) {
-      // console.log(`isStrElementOpenBracket bracket = ${bracket} index = ${index} of ${array.length-1}`);
       stack.push(bracket);
-      // console.log(`stack = ${stack}`);
     } 
   })
   
   if (isStackEmpty(stack)) {
-    // console.log(`isStackEmpty = ${isStackEmpty(stack)}`);
-    // console.log(`isStackEmpty stack = ${stack}`);
     return true;
   } else {
     return false;
