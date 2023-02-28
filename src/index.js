@@ -58,9 +58,11 @@ module.exports = function check(str, bracketsConfig) {
     // console.log(`start bracket = ${bracket} index = ${index} of ${array.length-1}`);
     stackTop = stack.at(-1);
 
-    // if (isFirstBracketClosing(bracket)) {
-    //   return false;
-    // }
+    if (bracket !== '|') {
+      if (isFirstBracketClosing(bracket)) {
+        stack.push(bracket);
+      }
+    }
     
     if (stackTop) {
       if (stackTop === compareClosingAndOpenBracket(bracket)) {
