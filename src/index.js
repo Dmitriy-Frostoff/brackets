@@ -56,12 +56,16 @@ module.exports = function check(str, bracketsConfig) {
   [...str].forEach((bracket, index, array) => {
     stackTop = stack.at(-1);
 
+    // add closing bracket to stack => 
+    // stack won't be empty after all executuions in any way and 
+    // so next function iteration could be emidiately stopped
     if (bracket !== '|') {
       if (isFirstBracketClosing(bracket)) {
         stack.push(bracket);
+        return;
       }
     }
-    
+
     if (stackTop) {
       if (stackTop === compareClosingAndOpenBracket(bracket)) {
         stack.pop();
